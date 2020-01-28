@@ -1,0 +1,20 @@
+{
+  "name": "serverChallenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start1": "nodemon ./server/server1",
+    "start2": "nodemon ./server/server2",
+    "start3": "nodemon ./server/server3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "nodemon": "^2.0.2"
+  }
+}
