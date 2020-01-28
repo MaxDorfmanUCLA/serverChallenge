@@ -6,7 +6,8 @@
   "scripts": {
     "start1": "nodemon ./server/server1",
     "start2": "nodemon ./server/server2",
-    "start3": "nodemon ./server/server3"
+    "start3": "nodemon ./server/server3",
+    "serve": "live-server ./client/app.html"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,8 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
-    "nodemon": "^2.0.2"
+    "live": "^0.1.25-beta.0",
+    "nodemon": "^2.0.2",
+    "server": "^1.0.22"
   }
 }

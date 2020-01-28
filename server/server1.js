@@ -7,7 +7,8 @@ app.listen(3100, function() {
 }) 
 app.use(bodyParser.json());   
 app.use(bodyParser.urlencoded(extended = true));
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client/app.html')));
+
 
 app.get('/', (req, res) => {
     res.send('hello from server 1');
@@ -16,9 +17,3 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     res.status(201).send(req.body);
 })
-
-/* 
-"start1": "nodemon ./server/server1",
-    "start2": "nodemon ./server/server3",
-    "start3": "nodemon ./server/server3"
-*/
