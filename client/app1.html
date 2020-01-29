@@ -10,8 +10,6 @@
     <form id="form1">
         <input id="textField" type="text">
         <input id="submitButton" type="submit">
-        <input id="submitButton2" type="submit">
-        <input id="submitButton3" type="submit">
     </form>
     <div id="feed">
         <span>Messages Sent From Node 1:</span>
@@ -37,32 +35,23 @@
         function send(e) {
             e.preventDefault();
             let mess = $(textField)[0].value;
-            console.log($(textField)[0].value);
+            console.log(mess);
             $message = `<div>${$(textField)[0].value}</div>`
             $(list1).prepend($message);
             $.post('http://localhost:3200',mess,(data) => {
                 for (num in data){
                     console.log('data from post', num);
                     $(list2).prepend(num);
+                }
+            });
+            $.post('http://localhost:3300',mess,(data) => {
+                for (num in data){
+                    console.log('data from post', num);
                     $(list3).prepend(num);
                 }
             });
         }
-        function send2(e) {
-            e.preventDefault();
-            console.log($(textField)[0].value);
-            $message = `<div>${$(textField)[0].value}</div>`
-            $(list2).prepend($message);
-        }
-        function send3(e) {
-            e.preventDefault();
-            console.log($(textField)[0].value);
-            $message = `<div>${$(textField)[0].value}</div>`
-            $(list3).prepend($message);
-        }
         $(submitButton).click((e) => {send(e)})
-        $(submitButton2).click((e) => {send2(e)})
-        $(submitButton3).click((e) => {send3(e)})
     </script>
     <style>
         span {
