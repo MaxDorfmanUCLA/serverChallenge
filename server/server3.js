@@ -16,7 +16,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded(extended = true));
 app.use(express.static(path.join(__dirname, 'client')));
 
-
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/serverChallenge');
 var db = mongoose.connection;
@@ -29,29 +28,26 @@ db.once('open', function () {
 var Schema = mongoose.Schema;
 // create a schema
 var userSchema = new Schema({
-  sender: String,
-  value: String
+  owner: Number,
+  value: Number
 });
 var User = mongoose.model('User', userSchema);
 
 
 
 app.get('/', (req, res) => {
-    User.find({ sender: 3 }, (err, posts) => {
+    User.find({ owner: 3 }, (err, posts) => {
       if (err) throw err;
-    
-      // show the admins in the past month
-      console.log("all posts from server 3: ", posts);
+      console.log("all posts sent to server 3: ", posts);
+      res.status(201).send(posts);
     });
-  res.status(201).send('posts loaded from db');
+  //res.status(201).send('posts loaded from db');
 })
 
 app.post('/', (req, res) => {
     // create a new user
-    console.log('req.body.server:', req.body.server);
-    console.log('req.body.value', req.body.value);
     var newUser = User({
-        sender: req.body.server,
+        owner: 3,
         value: req.body.value
     });
    

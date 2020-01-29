@@ -5,56 +5,44 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
-    <h4 id=app>Integer Network: Node 3</h4>
+    <h2 id=app>Integer Network: Node 3</h2>
     <div id=app>Enter an Integer</div>
     <form id="form1">
         <input id="textField" type="text">
         <input id="submitButton" type="submit">
     </form>
-    <div>
-        <span>Messages Sent From Node 3:</span>
-        <span>Messages Sent From Node 1:</span>
-        <span>Messages Sent From Node 2:</span>
-    </div>
-    <div id="feedList3">
-        <ol id="list3">
-            
-        </ol>
-    </div>
-    <div id="feedList1">
-        <ol id="list1">
-            
-        </ol>
-    </div>
-    <div id="feedList2">
-        <ol id="list2">
-            
-        </ol>
+    <div id="feed">
+        <h3>Messages Recieved From Node 1:</h3>
+           <div id="feedList1"></div> 
+        <h3>Messages Recieved From Node 2:</h3>
+            <div id="feedList2"></div> 
+        <h3>Messages Sent From Node 3:</h3>
+            <div id="feedList3"></div> 
     </div>
     <script>
         $.get('http://localhost:3100',(data) => {
                 for (num in data){
                     console.log('data from post', num);
                     //$(list3).prepend($message);
-                    $message = `<div>${num}</div>`
-                    $(list1).prepend(num);
+                    $message = `<span id ="span">${num}</span>`
+                    $(feedList1).append(`${$message}, `);
                 }
             });
             $.get('http://localhost:3200',(data) => {
                 for (num in data){
                     console.log('data from post', num);
                     //$(list3).prepend($message);
-                    $message = `<div>${num}</div>`
-                    $(list2).prepend(num);
+                    $message = `<span id ="span">${num}</span>`
+                    $(feedList2).append(`${$message}, `);
                 }
             });
-         function send(e) {
+        function send(e) {
             e.preventDefault();
             let mess = $(textField)[0].value;
             console.log(mess);
-            $message = `<div>${$(textField)[0].value}</div>`
-            let post = {server: 3, value: mess}
-            $(list1).prepend($message);
+            $message = `<span id ="span">${$(textField)[0].value}</span>`
+            let post = {server: 1, value: mess}
+            $(feedList3).append(`${$message}, `);
             $.post('http://localhost:3100',post,(data) => {
                 for (num in data){
                     console.log('data from post', num);
@@ -70,24 +58,33 @@
         }
         $(submitButton).click((e) => {send(e)})
     </script>
-     <style> 
-        span {
-            margin-left: 30px;
-        }
+    <style> 
+        
         #feed {
             margin-top: 20px;
         }
-        #feedList1 {
-            margin-left: 8px;
+        #span {
+            margin-top: -20px;
+            margin-bottom: -20px;
+        }
+        
+        h3{
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+         #feedList1 {
+            margin-top: -40px;
+            margin-bottom: -40px;
         }
         #feedList2 {
-            margin-top: -88px;
-            margin-left: 231px;
+            margin-top: -40px;
+            margin-bottom: -40px;
         }
         #feedList3 {
-            margin-top: -88px; 
-            margin-left: 485px;
+            margin-top: -40px;
+            margin-bottom: -40px;
         }
+        
         #form1 {
             margin-top: 10px;
             margin-bottom: 50px;

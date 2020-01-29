@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start1": "nodemon ./server/server1",
-    "start2": "nodemon ./server/server2",
-    "start3": "nodemon ./server/server3",
-    "serve1": "live-server ./client/app1.html",
-    "serve2": "live-server ./client/app2.html",
-    "serve3": "live-server ./client/app3.html"
+    "startServer1": "nodemon ./server/server1",
+    "startServer2": "nodemon ./server/server2",
+    "startServer3": "nodemon ./server/server3",
+    "page1": "live-server ./client/app1.html",
+    "page2": "live-server ./client/app2.html",
+    "page3": "live-server ./client/app3.html"
   },
   "keywords": [],
   "author": "",
