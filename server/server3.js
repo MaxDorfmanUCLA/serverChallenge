@@ -35,7 +35,15 @@ var userSchema = new Schema({
 var User = mongoose.model('User', userSchema);
 
 
+
 app.get('/', (req, res) => {
+    User.find({}, function(err, users) {
+        if (err) throw err;
+      
+        // object of all the users
+        console.log(users);
+      });
+    res.status(201).send('posts loaded from db');
     // User.find({}, function(err, users) {
     //     if (err) throw err;
       
@@ -60,11 +68,5 @@ app.post('/', (req, res) => {
         if (err) throw err;
         console.log('Post created!');
     });
-    User.find({}, function(err, users) {
-        if (err) throw err;
-      
-        // object of all the users
-        console.log(users);
-      });
-    res.status(201).send('new post added');
+    res.status(201).send('post added to db');
 })
