@@ -32,6 +32,22 @@
         </ol>
     </div>
     <script>
+        $.get('http://localhost:3200',(data) => {
+                for (num in data){
+                    console.log('data from post', num);
+                    //$(list3).prepend($message);
+                    $message = `<div>${num}</div>`
+                    $(list2).prepend(num);
+                }
+            });
+            $.get('http://localhost:3300',(data) => {
+                for (num in data){
+                    console.log('data from post', num);
+                    //$(list3).prepend($message);
+                    $message = `<div>${num}</div>`
+                    $(list3).prepend(num);
+                }
+            });
         function send(e) {
             e.preventDefault();
             let mess = $(textField)[0].value;

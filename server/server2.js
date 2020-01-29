@@ -36,21 +36,13 @@ var User = mongoose.model('User', userSchema);
 
 
 app.get('/', (req, res) => {
-    User.find({}, function(err, users) {
-        if (err) throw err;
-      
-        // object of all the users
-        console.log(users);
-      });
-    res.status(201).send('posts loaded from db');
-    // User.find({}, function(err, users) {
-    //     if (err) throw err;
-      
-    //     // object of all the users
-    //     console.log('this is information taken from the db', users);
-    //   });
-    // res.status(201).send('new user added');
-    res.send('hello from server 2');
+    User.find({ sender: 2 }, (err, posts) => {
+      if (err) throw err;
+    
+      // show the admins in the past month
+      console.log("all posts from server 2: ", posts);
+    });
+  res.status(201).send('posts loaded from db');
 })
 
 app.post('/', (req, res) => {
