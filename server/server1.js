@@ -24,7 +24,7 @@ db.on('error', function (err) {
     console.log('connection error', err);
 });
 db.once('open', function () {
-    console.log('connected.');
+    console.log('connected to mongoDB');
 });
 var Schema = mongoose.Schema;
 // create a schema
@@ -33,7 +33,6 @@ var userSchema = new Schema({
   value: Number
 });
 var User = mongoose.model('User', userSchema);
-
 
 app.get('/', (req, res) => {
     User.find({ owner: 1 }, (err, posts) => {

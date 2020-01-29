@@ -6,57 +6,67 @@
 </head>
 <body>
     <h2 id=app>Integer Network: Node 1</h2>
-    <h4 id=app>Enter an Integer</h4>
+    <h4 id=app>Enter an Integer Only</h4>
     <form id="form1">
         <input id="textField" type="text">
         <input id="submitButton" type="submit">
     </form>
     <div id="feed">
-        <h3>Messages Sent From Node 1:</h3>
-           <div id="feedList1"></div> 
-        <h3>Messages Recieved From Node 2:</h3>
-            <div id="feedList2"></div> 
-        <h3>Messages Recieved From Node 3:</h3>
+        <h3>Messages Sent FROM Node 1:</h3>
+            <div id="feedList1"></div> 
+        <h3>All Messages Sent TO Node 2:</h3>
+           <div id="feedList2"></div> 
+        <h3>All Messages Sent TO Node 3:</h3>
             <div id="feedList3"></div> 
     </div>
     <script>
         $.get('http://localhost:3200',(data) => {
-                for (num in data){
-                    console.log('data from post', num);
-                    //$(list3).prepend($message);
-                    $message = `<span id ="span">${num}</span>`
+            $(feedList2).append("feed: ");
+            for (num of data){
+                console.log('data from node 2: ', num.value);
+                $message = `<span id ="span">${num.value}</span>`
+                $(feedList2).append(`${$message}, `);
+            }
+        });
+        $.get('http://localhost:3300',(data) => {
+            $(feedList3).append("feed: ");
+            for (num of data){
+                console.log('data from node 3: ', num.value);
+                $message = `<span id ="span">${num.value}</span>`
+                $(feedList3).append(`${$message}, `);
+            }
+        });
+
+        function refresh(){
+            $(feedList2).empty();
+            $(feedList2).append("feed: ");
+            $(feedList3).empty();
+            $(feedList3).append("feed: ");
+            $.get('http://localhost:3200',(data) => {
+                for (num of data){
+                    
+                    $message = `<span id ="span">${num.value}</span>`
                     $(feedList2).append(`${$message}, `);
                 }
             });
             $.get('http://localhost:3300',(data) => {
-                for (num in data){
-                    console.log('data from post', num);
-                    //$(list3).prepend($message);
-                    $message = `<span id ="span">${num}</span>`
+                for (num of data){
+                    
+                    $message = `<span id ="span">${num.value}</span>`
                     $(feedList3).append(`${$message}, `);
                 }
             });
+        }
+        setInterval(refresh, 5000);
         function send(e) {
             e.preventDefault();
             let mess = $(textField)[0].value;
-            console.log(mess);
+            console.log('data sent from node 1 to nodes 2 and 3: ', mess);
             $message = `<span id ="span">${$(textField)[0].value}</span>`
             let post = {server: 1, value: mess}
             $(feedList1).append(`${$message}, `);
-            $.post('http://localhost:3200',post,(data) => {
-                //for (num in data){
-                    //console.log('data from post', data);
-                    //$(feedList2).append(`${$message}, `);
-                    //$(list2).prepend($message);
-                //}
-            });
-            $.post('http://localhost:3300',post,(data) => {
-                //for (num in data){
-                    //console.log('data from post', num);
-                    //$(feedList3).append(`${$message}, `);
-                    //$(list3).prepend($message);
-                //}
-            });
+            $.post('http://localhost:3200',post,(data) => {});
+            $.post('http://localhost:3300',post,(data) => {});
         }
         $(submitButton).click((e) => {send(e)})
     </script>

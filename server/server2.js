@@ -24,7 +24,7 @@ db.on('error', function (err) {
     console.log('connection error', err);
 });
 db.once('open', function () {
-    console.log('connected.');
+    console.log('connected to mongoDB');
 });
 var Schema = mongoose.Schema;
 // create a schema
