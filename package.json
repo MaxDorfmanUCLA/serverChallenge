@@ -7,7 +7,9 @@
     "start1": "nodemon ./server/server1",
     "start2": "nodemon ./server/server2",
     "start3": "nodemon ./server/server3",
-    "serve": "live-server ./client/app.html"
+    "serve1": "live-server ./client/app1.html",
+    "serve2": "live-server ./client/app1.html",
+    "serve3": "live-server ./client/app1.html"
   },
   "keywords": [],
   "author": "",

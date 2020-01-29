@@ -7,7 +7,7 @@ app.listen(3100, function() {
 }) 
 app.use(bodyParser.json());   
 app.use(bodyParser.urlencoded(extended = true));
-app.use(express.static(path.join(__dirname, 'client/app.html')));
+app.use(express.static(path.join(__dirname, 'client')));
 
 
 app.get('/', (req, res) => {
