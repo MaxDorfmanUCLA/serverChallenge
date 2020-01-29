@@ -13,8 +13,8 @@
     </form>
     <div id="feed">
         <span>Messages Sent From Node 1:</span>
-        <span>Messages Received From Node 2:</span>
-        <span>Messages Received From Node 3:</span>
+        <span>Messages Sent From Node 2:</span>
+        <span>Messages Sent From Node 3:</span>
     </div>
     <div id="feedList1">
         <ol id="list1">
@@ -37,23 +37,24 @@
             let mess = $(textField)[0].value;
             console.log(mess);
             $message = `<div>${$(textField)[0].value}</div>`
+            let post = {server: 1, value: mess}
             $(list1).prepend($message);
-            $.post('http://localhost:3200',mess,(data) => {
+            $.post('http://localhost:3200',post,(data) => {
                 for (num in data){
                     console.log('data from post', num);
-                    $(list2).prepend(num);
+                    //$(list2).prepend($message);
                 }
             });
-            $.post('http://localhost:3300',mess,(data) => {
+            $.post('http://localhost:3300',post,(data) => {
                 for (num in data){
                     console.log('data from post', num);
-                    $(list3).prepend(num);
+                    //$(list3).prepend($message);
                 }
             });
         }
         $(submitButton).click((e) => {send(e)})
     </script>
-    <style>
+    <style> 
         span {
             margin-left: 30px;
         }

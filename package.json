@@ -19,7 +19,11 @@
     "express": "^4.17.1",
     "jquery": "^3.4.1",
     "live": "^0.1.25-beta.0",
+    "mongodb": "^3.5.2",
     "nodemon": "^2.0.2",
     "server": "^1.0.22"
+  },
+  "devDependencies": {
+    "mongoose": "^5.8.10"
   }
 }

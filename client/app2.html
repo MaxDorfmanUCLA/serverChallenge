@@ -13,8 +13,8 @@
     </form>
     <div>
         <span>Messages Sent From Node 2:</span>
-        <span>Messages Received From Node 1:</span>
-        <span>Messages Received From Node 3:</span>
+        <span>Messages Sent From Node 1:</span>
+        <span>Messages Sent From Node 3:</span>
     </div>
     <div id="feedList2">
         <ol id="list2">
@@ -32,43 +32,44 @@
         </ol>
     </div>
     <script>
-       function send(e) {
+        function send(e) {
             e.preventDefault();
             let mess = $(textField)[0].value;
             console.log(mess);
             $message = `<div>${$(textField)[0].value}</div>`
+            let post = {server: 2, value: mess}
             $(list1).prepend($message);
-            $.post('http://localhost:3100',mess,(data) => {
+            $.post('http://localhost:3100',post,(data) => {
                 for (num in data){
                     console.log('data from post', num);
-                    $(list1).prepend(num);
+                    //$(list2).prepend($message);
                 }
             });
-            $.post('http://localhost:3300',mess,(data) => {
+            $.post('http://localhost:3300',post,(data) => {
                 for (num in data){
                     console.log('data from post', num);
-                    $(list3).prepend(num);
+                    //$(list3).prepend($message);
                 }
             });
         }
         $(submitButton).click((e) => {send(e)})
     </script>
-    <style>
+     <style> 
         span {
             margin-left: 30px;
         }
         #feed {
             margin-top: 20px;
         }
-        #feedList2 {
+        #feedList1 {
             margin-left: 8px;
         }
-        #feedList1 {
+        #feedList2 {
             margin-top: -88px;
             margin-left: 231px;
         }
         #feedList3 {
-            margin-top: -88px;
+            margin-top: -88px; 
             margin-left: 485px;
         }
         #form1 {
