@@ -8,8 +8,8 @@
     "start2": "nodemon ./server/server2",
     "start3": "nodemon ./server/server3",
     "serve1": "live-server ./client/app1.html",
-    "serve2": "live-server ./client/app1.html",
-    "serve3": "live-server ./client/app1.html"
+    "serve2": "live-server ./client/app2.html",
+    "serve3": "live-server ./client/app3.html"
   },
   "keywords": [],
   "author": "",

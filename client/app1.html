@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+    <h2 id=app>Integer Network: Node 1</h2>
+    <h4 id=app>Enter an Integer</h4>
+    <form id="form1">
+        <input id="textField" type="text">
+        <input id="submitButton" type="submit">
+        <input id="submitButton2" type="submit">
+        <input id="submitButton3" type="submit">
+    </form>
+    <div id="feed">
+        <span>Messages Sent From Node 1:</span>
+        <span>Messages Received From Node 2:</span>
+        <span>Messages Received From Node 3:</span>
+    </div>
+    <div id="feedList1">
+        <ol id="list1">
+           
+        </ol>
+    </div>
+    <div id="feedList2">
+        <ol id="list2">
+            
+        </ol>
+    </div>
+    <div id="feedList3">
+        <ol id="list3">
+           
+        </ol>
+    </div>
+    <script>
+        function send(e) {
+            e.preventDefault();
+            let mess = $(textField)[0].value;
+            console.log($(textField)[0].value);
+            $message = `<div>${$(textField)[0].value}</div>`
+            $(list1).prepend($message);
+            $.post('http://localhost:3200',mess,(data) => {
+                for (num in data){
+                    console.log('data from post', num);
+                    $(list2).prepend(num);
+                    $(list3).prepend(num);
+                }
+            });
+        }
+        function send2(e) {
+            e.preventDefault();
+            console.log($(textField)[0].value);
+            $message = `<div>${$(textField)[0].value}</div>`
+            $(list2).prepend($message);
+        }
+        function send3(e) {
+            e.preventDefault();
+            console.log($(textField)[0].value);
+            $message = `<div>${$(textField)[0].value}</div>`
+            $(list3).prepend($message);
+        }
+        $(submitButton).click((e) => {send(e)})
+        $(submitButton2).click((e) => {send2(e)})
+        $(submitButton3).click((e) => {send3(e)})
+    </script>
+    <style>
+        span {
+            margin-left: 30px;
+        }
+        #feed {
+            margin-top: 20px;
+        }
+        #feedList1 {
+            margin-left: 8px;
+        }
+        #feedList2 {
+            margin-top: -88px;
+            margin-left: 231px;
+        }
+        #feedList3 {
+            margin-top: -88px; 
+            margin-left: 485px;
+        }
+        #form1 {
+            margin-top: 10px;
+            margin-bottom: 50px;
+        }
+    </style>
+    <div id="app"></div>   
+</div></div>
+<script type="text/javascript" src="./bundle.js"></script>
+</body>
+</html>
