@@ -34,9 +34,22 @@
     <script>
          function send(e) {
             e.preventDefault();
-            console.log($(textField)[0].value);
+            let mess = $(textField)[0].value;
+            console.log(mess);
             $message = `<div>${$(textField)[0].value}</div>`
             $(list1).prepend($message);
+            $.post('http://localhost:3100',mess,(data) => {
+                for (num in data){
+                    console.log('data from post', num);
+                    $(list1).prepend(num);
+                }
+            });
+            $.post('http://localhost:3200',mess,(data) => {
+                for (num in data){
+                    console.log('data from post', num);
+                    $(list3).prepend(num);
+                }
+            });
         }
         $(submitButton).click((e) => {send(e)})
     </script>
